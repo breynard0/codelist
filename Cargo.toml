@@ -2,7 +2,13 @@
 name = "codelist"
 version = "1.0.0"
 edition = "2021"
-
-# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+authors = ["Siliwolf"]
+license = "MIT"
+description = "A tiny tool for surfing a file structure, intended for codebases "
+readme = "README.md"
+homepage = "https://github.com/Siliwolf/codelist"
+repository = "https://github.com/Siliwolf/codelist"
+keywords = ["cli", "directory", "codebase", "file", "tiny"]
+categories = ["command-line-utilities"]
 
 [dependencies]
