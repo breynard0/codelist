@@ -1,5 +1,5 @@
 # codelist
-<img src="./sceenshot.png">
+![Screenshot](screenshot.png)
 
 ## Usage
 `codelist <DIRECTORY_PATH>`
