@@ -1,7 +1,5 @@
 use std::path::Path;
 
-const OUTPUT_PATH: &str = "output.txt";
-
 const ANSI_RED: &str = "\x1b[31m";
 const ANSI_GREEN: &str = "\x1b[32m";
 const ANSI_YELLOW: &str = "\x1b[33m";
@@ -29,8 +27,6 @@ fn main() {
         }
     };
 
-    // Reset file
-    std::fs::write(OUTPUT_PATH, "").unwrap();
     print_children(path, 0);
 }
 
