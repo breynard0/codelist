@@ -18,19 +18,32 @@ fn ansi(idx: u32) -> &'static str {
 }
 
 fn main() {
-    let args = std::env::args().collect::<Vec<_>>();
+    let mut args = std::env::args().collect::<Vec<_>>();
+
+    if args.contains(&"--help".to_string()) || args.contains(&"-h".to_string()) {
+        println!("\x1b[1;32mCodelist Help");
+        println!("{}      -h, --help\x1b[0m           Shows this command", ANSI_BLUE);
+        println!("\x1b[1;34m      -n  --no-hide\x1b[0m        Shows hidden files and folders");
+        return;
+    }
+
+    let mut nohide = false;
+    if args.contains(&"--no-hide".to_string()) || args.contains(&"-n".to_string()) {
+        nohide = true;
+        args.remove(args.iter().position(|x| *x == "--no-hide".to_string() || *x == "-n".to_string()).unwrap());
+    }
+
     let path = match args.get(1) {
         Some(path) => path,
         None => {
-            eprintln!("Invalid and/or no path specified");
-            return;
+            &".".to_string()
         }
     };
 
-    print_children(path, 0);
+    print_children(path, 0, nohide);
 }
 
-fn print_children(path: &String, level: usize) {
+fn print_children(path: &String, level: usize, nohide: bool) {
     if Path::new(path).is_file() {
         return;
     }
@@ -41,11 +54,19 @@ fn print_children(path: &String, level: usize) {
         let mut s = "   ".repeat(level).to_string();
         match c.path().is_dir() {
             true => {
+                if c.file_name().to_str().unwrap().starts_with(".") && !nohide {
+                    // println!("Hid {}", c.file_name().to_str().unwrap());
+                    continue;
+                }
                 s.push_str(format!("{}{}", ANSI_BLUE, c.file_name().to_str().unwrap()).as_str());
                 output(s);
-                print_children(&c.path().to_str().unwrap().to_string(), level + 1);
+                print_children(&c.path().to_str().unwrap().to_string(), level + 1, nohide);
             },
             false => {
+                if c.file_name().to_str().unwrap().starts_with(".") && !nohide {
+                    // println!("Hid {}", c.file_name().to_str().unwrap());
+                    continue;
+                }
                 let lines = match std::fs::read_to_string(c.path()) {
                     Ok(e) => e,
                     Err(_) => continue,

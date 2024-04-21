@@ -1,13 +1,13 @@
 [package]
 name = "codelist"
-version = "1.0.2"
+version = "1.1.0"
 edition = "2021"
-authors = ["Siliwolf"]
+authors = ["breynard"]
 license = "MIT"
 description = "A tiny tool for surfing a file structure, intended for codebases "
 readme = "README.md"
-homepage = "https://github.com/Siliwolf/codelist"
-repository = "https://github.com/Siliwolf/codelist"
+homepage = "https://github.com/breynard0/codelist"
+repository = "https://github.com/breynard0/codelist"
 keywords = ["cli", "directory", "codebase", "file", "tiny"]
 categories = ["command-line-utilities"]
 
