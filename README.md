@@ -1,6 +1,5 @@
 # codelist
 ![Screenshot](screenshot0.png)
-![Screenshot](screenshot1.png)
 
 ## Usage
 `codelist`
@@ -11,3 +10,9 @@
 ## Installation
 `cargo install codelist`
 Note: Rust/cargo required
+
+
+
+
+
+![Screenshot](screenshot1.png)
